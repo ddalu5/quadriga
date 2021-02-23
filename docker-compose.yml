@@ -3,18 +3,36 @@
 
 version: "3.3"
 services:
-  postgres:
+  db:
     image: postgres
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-pigmalion}
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-apassword}
-      PGDATA: /opt/volums/pg_train
+      POSTGRES_DB: ${DB_NAME:-pigmalion}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-apassword}
+      PGDATA: /opt/volums/pg_quadriga
     volumes:
-       - postgres:/opt/volums/pg_train
+       - postgres:/opt/volums/pg_quadriga
     ports:
-      - "5432:5432"
+      - "${DB_PORT:-5432}:${DB_PORT:-5432}"
+    restart: unless-stopped
+  core:
+    build: core/
+    environment: 
+      DEBUG: true
+      DB_NAME: ${DB_NAME:-pigmalion}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-apassword}
+      DB_PORT: ${DB_PORT:-5432}
+      DB_HOST: ${DB_HOST:-db}
+    command: tail -f /dev/null
+    ports:
+      - "${CORE_PORT:-8080}:${CORE_PORT:-8080}"
+    volumes: 
+      - ./core/:/api
+    depends_on:
+      - db
     restart: unless-stopped
 
 volumes: 
   postgres:
+  core:
