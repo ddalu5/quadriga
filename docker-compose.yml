@@ -18,7 +18,7 @@ services:
   core:
     build: core/
     environment: 
-      DEBUG: true
+      DEBUG: 1
       DB_NAME: ${DB_NAME:-pigmalion}
       DB_USER: ${DB_USER:-postgres}
       DB_PASSWORD: ${DB_PASSWORD:-apassword}
