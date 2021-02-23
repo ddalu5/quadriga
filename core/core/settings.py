@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -78,8 +79,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
@@ -121,3 +126,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# DRF
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
