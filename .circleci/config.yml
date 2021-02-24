@@ -20,4 +20,5 @@ workflows:
     jobs:
       - prepare
       - linting-core:
-          requires: prepare
+          requires: 
+            - prepare
