@@ -10,8 +10,13 @@ jobs:
       - checkout
       - run: pip install -r dev-requirements.txt
       - run: pip install -r core/requirements.txt
+  linting:
+    executor: python/default
+    steps: 
+      - run: flake8 core/
 
 workflows:
   setup:
     jobs:
       - prepare
+      - linting
