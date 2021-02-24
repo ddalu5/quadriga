@@ -4,21 +4,17 @@ orbs:
   python: circleci/python@1.3.2
 
 jobs:
-  prepare:
+  linting-core::
     executor: python/default
     steps:
       - checkout
       - run: pip install -r dev-requirements.txt
       - run: pip install -r core/requirements.txt
-  linting-core:
-    executor: python/default
-    steps:
-      - run: flake8 core/
+      - run:
+        command: flake8 core/
+        name: linting core
 
 workflows:
   setup:
     jobs:
-      - prepare
-      - linting-core:
-          requires: 
-            - prepare
+      - linting-core
