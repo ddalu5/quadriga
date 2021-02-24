@@ -8,11 +8,11 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - pip install -r dev-requirements.txt
+      - run: pip install -r dev-requirements.txt
   test-linting-core:
     executor: python/default
     steps:
-      - pip install -r core/requirements.txt
+      - run: pip install -r core/requirements.txt
       - run:
           command: flake8 core/
           name: Test-Linting-Core
