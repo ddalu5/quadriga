@@ -9,10 +9,7 @@ jobs:
     steps:
       - checkout
       - run: pip install -r dev-requirements.txt
-      - run: pip install -r ~/core/requirements.txt
-      - run:
-          command: flake8 core/
-          name: Test-Linting-Core
+      - run: pip install -r core/requirements.txt
 
 workflows:
   setup:
