@@ -1,0 +1,24 @@
+version: 2.1
+
+orbs:
+  python: circleci/python:3.8
+
+jobs:
+  prepare:
+    executor: python/default
+    steps:
+      - checkout
+      - pip install -r dev-requirements.txt
+  test-linting-core:
+    executor: python/default
+    steps:
+      - pip install -r core/requirements.txt
+      - run:
+          command: flake8 core/
+          name: Test-Linting-Core
+
+workflows:
+  main:
+    jobs:
+      - prepare
+      - test-linting-core
