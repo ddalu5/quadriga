@@ -8,17 +8,20 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - run: pip install -r dev-requirements.txt
-      - run: pip install -r core/requirements.txt
-  linting-core:
-    executor: python/default
-    steps: 
-      - run: flake8 core/
+      - python/install-packages:
+          pkg-manager: pip
+      - python/install-packages:
+          pip-dependency-file: dev-requirements.txt
+          pkg-manager: pip
+      - python/install-packages:
+          pip-dependency-file: core/requirements.txt
+          pkg-manager: pip
+      - run:
+          command: |
+            flake8 --version
+          name: Flake8 version
 
 workflows:
   setup:
     jobs:
       - prepare
-  linting:
-    jobs:
-      - linting-core
