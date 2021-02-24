@@ -30,6 +30,7 @@ services:
       - "${CORE_PORT:-8080}:${CORE_PORT:-8080}"
     volumes: 
       - ./core/:/api
+      - core:/opt/volums/core_quadriga
     depends_on:
       - db
     restart: unless-stopped
