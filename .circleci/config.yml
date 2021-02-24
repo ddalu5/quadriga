@@ -12,13 +12,15 @@ jobs:
   test-linting-core:
     executor: python/default
     steps:
-      - run: pip install -r core/requirements.txt
+      - run: pip install -r ~/core/requirements.txt
       - run:
           command: flake8 core/
           name: Test-Linting-Core
 
 workflows:
-  main:
+  setup:
     jobs:
       - prepare
+  linting:
+    jobs:
       - test-linting-core
