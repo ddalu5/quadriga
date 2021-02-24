@@ -8,18 +8,11 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - python/install-packages:
-          pkg-manager: pip
-      - python/install-packages:
-          pip-dependency-file: dev-requirements.txt
-          pkg-manager: pip
-      - python/install-packages:
-          pip-dependency-file: core/requirements.txt
-          pkg-manager: pip
+      - run: pip install -r dev-requirements.txt
+      - run: pip install -r core/requirements.txt
       - run:
-          command: |
-            flake8 --version
-          name: Flake8 version
+          command: flake8 --version
+          name: flake version
 
 workflows:
   setup:
