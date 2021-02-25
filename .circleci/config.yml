@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run: pip install -r dev-requirements.txt
       - run:
-          command: flake8 --ignore=E501 core/
+          command: flake8 --ignore=E501,F401 core/
           name: linting-core
 
 workflows:
