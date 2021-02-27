@@ -22,11 +22,11 @@ jobs:
     env:
       SECRET_KEY: "Not a secret"
       DEBUG: 1
+      RUN_ENVIRONMENT: "TESTING"
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
       # Runs a single command using the runners shell
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
