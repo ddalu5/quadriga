@@ -93,9 +93,9 @@ if RUN_ENVIRONMENT in ('PROD', 'LOCAL'):
     }
 else:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'sqlite3.db',
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'sqlite3.db',
         }
     }
 
