@@ -1,7 +1,8 @@
+#!/usr/bin/env python
+
 # Another project management software
 # Copyright (C) 2021 Salah OSFOR <osfor.salah@gmail.com>
 
-#!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
