@@ -38,6 +38,8 @@ jobs:
           pip install -r dev-requirements.txt
       - name: Install dependencies CORE
         run: pip install -r core/requirements.txt
+      - name: Migrate DB CORE
+        run: python core/manage.py migrate
       - name: checking linting "CORE"
         run: flake8 --ignore=E501,F401 core/
       - name: unit tests "CORE"
