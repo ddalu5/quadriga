@@ -25,7 +25,7 @@ services:
       DB_PORT: ${DB_PORT:-5432}
       DB_HOST: ${DB_HOST:-db}
       SECRET_KEY: ${SECRET_KEY:-notRealySecret}
-    command: tail -f /dev/null
+    command: /bin/sh entrypoint.sh
     ports:
       - "${CORE_PORT:-8080}:${CORE_PORT:-8080}"
     volumes: 
@@ -33,7 +33,6 @@ services:
       - core:/opt/volums/core_quadriga
     depends_on:
       - db
-    restart: unless-stopped
 
 volumes: 
   postgres:
