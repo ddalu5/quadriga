@@ -149,6 +149,6 @@ REST_FRAMEWORK = {
 }
 
 try:
-    from .dev import *
-except:
+    from .dev import *  # noqa: F403
+except:     # noqa: E722
     pass
