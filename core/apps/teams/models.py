@@ -78,4 +78,4 @@ class MemberSkill(models.Model):
         return self.member.__str__() + ':' + self.skill.__str__()
 
     class Meta:
-        unique_together = [['member', 'member', 'appraiser']]
+        unique_together = [['member', 'skill', 'appraiser']]
